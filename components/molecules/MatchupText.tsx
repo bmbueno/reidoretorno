@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: 0 auto;
   line-height: 1.7;
   font-size: 16px;
-  color: var(--color-text-muted);
+  color: var(--rdr-text-muted);
 
   p {
     margin: 0 0 12px;

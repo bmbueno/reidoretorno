@@ -1,9 +1,16 @@
 export async function getChampions() {
+  const strapiUrl = process.env.STRAPI_URL
+  const strapiToken = process.env.STRAPI_TOKEN
+
+  if (!strapiUrl || !strapiToken) {
+    throw new Error('Missing STRAPI_URL or STRAPI_TOKEN environment variables')
+  }
+
   const res = await fetch(
-    `${process.env.STRAPI_URL}/api/campeoes?populate=*`,
+    `${strapiUrl}/api/campeoes?populate=*`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
+        Authorization: `Bearer ${strapiToken}`,
       },
       cache: 'no-store',
     }

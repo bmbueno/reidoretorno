@@ -15,16 +15,16 @@ const Img = styled.img<{ $isActive: boolean }>`
   border-radius: 50%;
   cursor: pointer;
   object-fit: cover;
-  border: 2px solid ${({ $isActive }) => ($isActive ? 'var(--color-gold)' : 'transparent')};
+  border: 2px solid ${({ $isActive }) => ($isActive ? 'var(--rdr-gold)' : 'transparent')};
   box-shadow: ${({ $isActive }) =>
-    $isActive ? '0 0 14px var(--color-gold-glow-lg)' : 'none'};
+    $isActive ? '0 0 14px var(--rdr-gold-glow-lg)' : 'none'};
   transform: ${({ $isActive }) => ($isActive ? 'scale(1.08)' : 'scale(1)')};
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 12px var(--color-gold-glow-sm);
-    border-color: var(--color-gold);
+    box-shadow: 0 0 12px var(--rdr-gold-glow-sm);
+    border-color: var(--rdr-gold);
   }
 `
 

@@ -10,17 +10,17 @@ interface ChampionInfoProps {
 }
 
 const Card = styled.div`
-  background: var(--color-card-info);
+  background: var(--rdr-card-info);
   padding: 25px;
   border-radius: 12px;
-  border: 2px solid var(--color-primary);
-  box-shadow: 0 0 20px var(--color-primary-glow);
+  border: 2px solid var(--rdr-primary);
+  box-shadow: 0 0 20px var(--rdr-primary-glow);
 `
 
 const Name = styled.h2`
   text-align: center;
   font-size: 30px;
-  color: var(--color-primary);
+  color: var(--rdr-primary);
   margin: 0 0 20px;
   text-transform: uppercase;
   letter-spacing: 1px;

@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #870000;
-  --color-primary-glow: rgba(255, 0, 0, 0.45);
-  --color-gold: #caa14a;
-  --color-gold-glow-sm: rgba(255, 215, 0, 0.45);
-  --color-gold-glow-lg: rgba(255, 215, 0, 0.65);
-  --color-bg: #0b0b0b;
-  --color-card-selection: rgba(15, 15, 15, 0.92);
-  --color-card-info: rgba(20, 20, 20, 0.94);
-  --color-text: #fff;
-  --color-text-muted: #f3f3f3;
+  --rdr-primary: #870000;
+  --rdr-primary-glow: rgba(255, 0, 0, 0.45);
+  --rdr-gold: #caa14a;
+  --rdr-gold-glow-sm: rgba(255, 215, 0, 0.45);
+  --rdr-gold-glow-lg: rgba(255, 215, 0, 0.65);
+  --rdr-bg: #0b0b0b;
+  --rdr-card-selection: rgba(15, 15, 15, 0.92);
+  --rdr-card-info: rgba(20, 20, 20, 0.94);
+  --rdr-text: #fff;
+  --rdr-text-muted: #f3f3f3;
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--rdr-bg);
+  color: var(--rdr-text);
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }

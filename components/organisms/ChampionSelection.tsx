@@ -12,16 +12,16 @@ interface ChampionSelectionProps {
 }
 
 const Card = styled.div`
-  background: var(--color-card-selection);
+  background: var(--rdr-card-selection);
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--rdr-primary);
   text-align: center;
 `
 
 const Title = styled.h2`
   font-size: 24px;
-  color: var(--color-primary);
+  color: var(--rdr-primary);
   margin: 0 0 15px;
   text-transform: uppercase;
   letter-spacing: 1px;

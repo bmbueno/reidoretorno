@@ -1,36 +1,54 @@
-import styled from 'styled-components'
-import DifficultyBadge from '@/components/atoms/DifficultyBadge'
-
-type Difficulty = 'HARD' | 'MEDIUM' | 'EASY'
+import styled, { css } from 'styled-components'
 
 interface StaticChampionCardProps {
   name: string
   subtitle: string
   imageUrl: string
   imageAlt: string
-  difficulty: Difficulty
+  disabled?: boolean
+  selected?: boolean
+  onClick?: () => void
   className?: string
 }
 
-const Card = styled.div`
+const Card = styled.div<{ $disabled?: boolean; $selected?: boolean }>`
   position: relative;
   overflow: hidden;
   aspect-ratio: 3 / 4;
   background: var(--rdr-bg);
-  cursor: pointer;
+
+  ${({ $disabled }) =>
+    $disabled
+      ? css`
+          cursor: not-allowed;
+          opacity: 0.4;
+        `
+      : css`
+          cursor: pointer;
+        `}
+
+  ${({ $selected }) =>
+    $selected &&
+    css`
+      outline: 2px solid var(--rdr-gold);
+      outline-offset: -2px;
+    `}
 `
 
-const Img = styled.img`
+const Img = styled.img<{ $disabled?: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1);
-  transition: filter 500ms ease, transform 500ms ease;
+  filter: ${({ $disabled }) => ($disabled ? 'grayscale(1)' : 'grayscale(0)')};
+  transition: transform 500ms ease;
 
-  ${Card}:hover & {
-    filter: grayscale(0);
-    transform: scale(1.1);
-  }
+  ${({ $disabled }) =>
+    !$disabled &&
+    css`
+      ${Card}:hover & {
+        transform: scale(1.1);
+      }
+    `}
 `
 
 const Overlay = styled.div`
@@ -39,22 +57,16 @@ const Overlay = styled.div`
   background: linear-gradient(to top, var(--rdr-surface-container-lowest) 0%, transparent 60%);
 `
 
-const BadgeWrapper = styled.div`
-  position: absolute;
-  top: 16px;
-  left: 16px;
-`
-
 const Info = styled.div`
   position: absolute;
   bottom: 16px;
-  left: 16px;
+  left: 8px;
 `
 
 const ChampName = styled.h4`
   font-family: var(--font-headline, 'Space Grotesk', sans-serif);
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 16px;
   text-transform: uppercase;
   font-style: italic;
   margin: 0 0 2px;
@@ -74,19 +86,23 @@ export default function StaticChampionCard({
   subtitle,
   imageUrl,
   imageAlt,
-  difficulty,
+  disabled,
+  selected,
+  onClick,
   className,
 }: StaticChampionCardProps) {
   return (
-    <Card className={className}>
-      <Img src={imageUrl} alt={imageAlt} />
+    <Card
+      $disabled={disabled}
+      $selected={selected}
+      className={className}
+      onClick={disabled ? undefined : onClick}
+    >
+      <Img src={imageUrl} alt={imageAlt} $disabled={disabled} />
       <Overlay />
-      <BadgeWrapper>
-        <DifficultyBadge difficulty={difficulty} />
-      </BadgeWrapper>
       <Info>
         <ChampName>{name}</ChampName>
-        <ChampSubtitle>{subtitle}</ChampSubtitle>
+        {/* <ChampSubtitle>{subtitle}</ChampSubtitle> */}
       </Info>
     </Card>
   )

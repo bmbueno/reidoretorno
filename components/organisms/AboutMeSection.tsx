@@ -22,6 +22,7 @@ const Photo = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   filter: grayscale(1);
 `
 
@@ -94,14 +95,14 @@ export default function AboutMeSection({ className }: { className?: string }) {
           <PhotoWrapper className="w-full md:w-1/2">
             <PhotoInner>
               <Photo
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB986OcTF30luHDITO6nrD73VBtJw3ShL3h6y-s5PC2Y10UUxyqb2rx-uTWSfdHm43vbG506ZhlkH8Eldk-YW7drWEpGwHI22aW0PXZ97R71CgtdiKJChH-szk0sBYNpliIvTZcFdc1wwt9OQc73Nej7aMX7Tk5s5sIgViuqVD9jH__yNutHg8zC6rPRBwhrVfB0IQm9jbz-UqHJ8t0ocx3FhBjEgiOXpIj5b7Kph_s6gzTuJgGkzd8omjkYAfzTPKht9c5ZKlEIYE"
-                alt="Professional Player Profile"
+                src="/reidoretorno.png"
+                alt="Rei do Retorno"
               />
             </PhotoInner>
             <PhotoDecoration />
           </PhotoWrapper>
           <div className="w-full md:w-1/2">
-            <Badge>ESPECIALISTA GAREN AD</Badge>
+            <Badge>ESPECIALISTA GAREN</Badge>
             <Title>SOBRE MIM</Title>
             <div className="space-y-6">
               <BodyText>

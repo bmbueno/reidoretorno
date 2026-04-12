@@ -1,18 +1,33 @@
 import { getChampions } from '@/lib/api'
+import { getDDragonChampions, getDDragonImageUrl, getDDragonTileUrl } from '@/lib/dataDragon'
 import Home from './home'
 import { Champion, RawChampion } from '@/types/champion'
+import { MergedChampion } from '@/types/mergedChampion'
 
 export default async function Page() {
-  const data = await getChampions()
-
   const strapiUrl = process.env.STRAPI_URL
 
-  const champions: Champion[] = data.data.map((c: RawChampion) => ({
+  const [strapiData, ddChampions] = await Promise.all([
+    getChampions(),
+    getDDragonChampions(),
+  ])
+
+  const strapiChampions: Champion[] = strapiData.data.map((c: RawChampion) => ({
     ...c,
-    image: { ...c.image, url: `${strapiUrl}${c.image.url}` },
     spells: c.spells.map((s) => ({ ...s, url: `${strapiUrl}${s.url}` })),
     build: c.build.map((b) => ({ ...b, url: `${strapiUrl}${b.url}` })),
   }))
 
-  return <Home champions={champions} />
+  const mergedChampions: MergedChampion[] = ddChampions.map((dd) => {
+    const strapi = strapiChampions.find((c) => c.riotkey === dd.key)
+    const tileUrl = getDDragonTileUrl(dd.id)
+    const fullImageUrl = getDDragonImageUrl(dd.version, dd.image.full)
+    return {
+      ddChampion: dd,
+      imageUrl: tileUrl,
+      strapiChampion: strapi ? { ...strapi, image: { url: fullImageUrl } } : undefined,
+    }
+  })
+
+  return <Home champions={strapiChampions} mergedChampions={mergedChampions} />
 }

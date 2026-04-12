@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import NavLink from '@/components/atoms/NavLink'
 
-const SECTIONS = ['home', 'matchups', 'sobre-mim'] as const
+const SECTIONS = ['home', 'matchups', 'about-me'] as const
 type Section = typeof SECTIONS[number]
 
 const Navbar = styled.nav`
@@ -53,7 +53,7 @@ export default function Nav({ className }: { className?: string }) {
       <div className="hidden md:flex gap-10 items-center">
         <NavLink href="#home" active={active === 'home'}>HOME</NavLink>
         <NavLink href="#matchups" active={active === 'matchups'}>MATCHUPS</NavLink>
-        <NavLink href="#sobre-mim" active={active === 'sobre-mim'}>SOBRE MIM</NavLink>
+        <NavLink href="#about-me" active={active === 'about-me'}>SOBRE MIM</NavLink>
       </div>
     </Navbar>
   )

@@ -89,7 +89,7 @@ const StatsRow = styled.div`
 
 export default function AboutMeSection({ className }: { className?: string }) {
   return (
-    <Section id="sobre-mim" className={`py-40 ${className ?? ''}`}>
+    <Section id="about-me" className={`py-40 ${className ?? ''}`}>
       <div className="container mx-auto px-12">
         <div className="flex flex-col md:flex-row items-center gap-20">
           <PhotoWrapper className="w-full md:w-1/2">

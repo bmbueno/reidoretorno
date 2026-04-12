@@ -4,9 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { Champion } from '@/types/champion'
 import { MergedChampion } from '@/types/mergedChampion'
 import Nav from '@/components/organisms/Nav'
-import Hero from '@/components/organisms/Hero'
-import StaticMatchupSection from '@/components/organisms/StaticMatchupSection'
-import ChampionSelection from '@/components/organisms/ChampionSelection'
+import Intro from '@/components/organisms/Intro'
+import MatchupSection from '@/components/organisms/MatchupSection'
 import ChampionInfo from '@/components/organisms/ChampionInfo'
 import AboutMeSection from '@/components/organisms/AboutMeSection'
 
@@ -28,8 +27,8 @@ export default function Home({ champions, mergedChampions }: HomeProps) {
   return (
     <>
       <Nav />
-      <Hero />
-      <StaticMatchupSection
+      <Intro />
+      <MatchupSection
         champions={mergedChampions}
         selectedId={selected?.id ?? null}
         onSelect={setSelected}

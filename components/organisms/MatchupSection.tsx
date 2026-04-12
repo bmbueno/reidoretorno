@@ -56,7 +56,7 @@ const GridScroll = styled.div`
   }
 `
 
-export default function StaticMatchupSection({ champions, selectedId, onSelect, className }: Props) {
+export default function MatchupSection({ champions, selectedId, onSelect, className }: Props) {
   return (
     <Section id="matchups" className={`py-32 ${className ?? ''}`}>
       <div className="container mx-auto px-12">

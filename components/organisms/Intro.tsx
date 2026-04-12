@@ -81,10 +81,11 @@ const Description = styled.p`
   text-transform: uppercase;
 `
 
-export default function Hero({ className }: { className?: string }) {
+export default function Intro({ className }: { className?: string }) {
+  const bannerLink = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_43.jpg';
   return (
     <Section id="home" className={`pt-20 ${className ?? ''}`}>
-      <BgImg src="/garen_banner.jpg" alt="Garen Background" />
+      <BgImg src={bannerLink} alt="Garen Background" />
       <OverlayLeft />
       <OverlayBottom />
       <div className="container mx-auto px-12 relative z-10 w-full">

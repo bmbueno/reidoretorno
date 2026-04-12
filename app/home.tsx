@@ -2,16 +2,21 @@
 
 import { useState } from 'react'
 import { Champion } from '@/types/champion'
-import Banner from '@/components/organisms/Banner'
+import Nav from '@/components/organisms/Nav'
+import Hero from '@/components/organisms/Hero'
+import StaticMatchupSection from '@/components/organisms/StaticMatchupSection'
 import ChampionSelection from '@/components/organisms/ChampionSelection'
 import ChampionInfo from '@/components/organisms/ChampionInfo'
+import AboutMeSection from '@/components/organisms/AboutMeSection'
 
 export default function Home({ champions }: { champions: Champion[] }) {
   const [selected, setSelected] = useState<Champion | null>(null)
 
   return (
     <>
-      <Banner />
+      <Nav />
+      <Hero />
+      <StaticMatchupSection />
       <main className="w-full max-w-[1100px] mx-auto px-5 py-10 box-border">
         <ChampionSelection
           champions={champions}
@@ -26,6 +31,7 @@ export default function Home({ champions }: { champions: Champion[] }) {
           />
         )}
       </main>
+      <AboutMeSection />
     </>
   )
 }

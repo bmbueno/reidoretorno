@@ -2,6 +2,10 @@ import { DDragonApiResponse, DDragonChampion } from '@/types/dataDragon'
 
 const VERSIONS_URL = 'https://ddragon.leagueoflegends.com/api/versions.json'
 
+export async function getDDragonVersion(): Promise<string> {
+  return getLatestVersion()
+}
+
 async function getLatestVersion(): Promise<string> {
   const res = await fetch(VERSIONS_URL, { next: { revalidate: 86400 } })
   if (!res.ok) throw new Error('Failed to fetch Data Dragon versions')
@@ -24,4 +28,8 @@ export function getDDragonImageUrl(version: string, imageFull: string): string {
 
 export function getDDragonTileUrl(champId: string): string {
   return `https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${champId}_0.jpg`
+}
+
+export function getDDragonItemImageUrl(version: string, riotkey: string): string {
+  return `https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${riotkey}.png`
 }

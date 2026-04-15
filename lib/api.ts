@@ -7,7 +7,7 @@ export async function getChampions() {
   }
 
   const res = await fetch(
-    `${strapiUrl}/api/campeoes?populate=*`,
+  `${strapiUrl}/api/campeoes?populate[spells][populate][image]=true&populate[build][populate][image]=true&populate[runebuilds][populate][primary][populate]=*&populate[runebuilds][populate][secondary][populate]=*&populate[runebuilds][populate][primaryperks][populate]=*&populate[runebuilds][populate][secondaryperks][populate]=*`,
     {
       headers: {
         Authorization: `Bearer ${strapiToken}`,
@@ -17,7 +17,8 @@ export async function getChampions() {
   )
 
   if (!res.ok) {
-    throw new Error('Failed to fetch champions')
+    const body = await res.text()
+    throw new Error(`Failed to fetch champions: ${res.status} ${res.statusText} — ${body}`)
   }
 
   return res.json()

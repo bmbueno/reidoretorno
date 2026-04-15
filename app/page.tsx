@@ -1,5 +1,5 @@
 import { getChampions } from '@/lib/api'
-import { getDDragonChampions, getDDragonImageUrl, getDDragonTileUrl, getDDragonVersion, getDDragonItemImageUrl } from '@/lib/dataDragon'
+import { getDDragonChampions, getDDragonImageUrl, getDDragonTileUrl } from '@/lib/dataDragon'
 import Home from './home'
 import { Champion, RawChampion } from '@/types/champion'
 import { MergedChampion } from '@/types/mergedChampion'
@@ -7,16 +7,15 @@ import { MergedChampion } from '@/types/mergedChampion'
 export default async function Page() {
   const strapiUrl = process.env.STRAPI_URL
 
-  const [strapiData, ddChampions, ddVersion] = await Promise.all([
+  const [strapiData, ddChampions] = await Promise.all([
     getChampions(),
     getDDragonChampions(),
-    getDDragonVersion(),
   ])
 
   const strapiChampions: Champion[] = strapiData.data.map((c: RawChampion) => ({
     ...c,
-    spells: c.spells.map((s) => ({ ...s, url: `${strapiUrl}${s.url}` })),
-    build: c.build.map((b) => ({ url: getDDragonItemImageUrl(ddVersion, b.riotkey) })),
+    spells: c.spells.map((s) => ({ ...s, url: `${strapiUrl}${s.image.url}` })),
+    build: c.build.map((b) => ({ url: `${strapiUrl}${b.image.url}` })),
   }))
 
   const mergedChampions: MergedChampion[] = ddChampions.map((dd) => {

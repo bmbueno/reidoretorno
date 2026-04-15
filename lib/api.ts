@@ -7,7 +7,7 @@ export async function getChampions() {
   }
 
   const res = await fetch(
-  `${strapiUrl}/api/campeoes?populate[spells][populate][image]=true&populate[build][populate][image]=true&populate[runebuilds][populate][primary][populate]=*&populate[runebuilds][populate][secondary][populate]=*&populate[runebuilds][populate][primaryperks][populate]=*&populate[runebuilds][populate][secondaryperks][populate]=*`,
+  `${strapiUrl}/api/campeoes?populate[spells][populate][image]=true&populate[build][populate][image]=true&populate[runebuilds][populate][primary][populate][icon]=true&populate[runebuilds][populate][secondary][populate][icon]=true&populate[runebuilds][populate][primaryperks][populate][icon]=true&populate[runebuilds][populate][secondaryperks][populate][icon]=true`,
     {
       headers: {
         Authorization: `Bearer ${strapiToken}`,

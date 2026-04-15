@@ -10,11 +10,10 @@ import ChampionInfo from '@/components/organisms/ChampionInfo'
 import AboutMeSection from '@/components/organisms/AboutMeSection'
 
 interface HomeProps {
-  champions: Champion[]
   mergedChampions: MergedChampion[]
 }
 
-export default function Home({ champions, mergedChampions }: HomeProps) {
+export default function Home({ mergedChampions }: HomeProps) {
   const [selected, setSelected] = useState<Champion | null>(null)
   const infoRef = useRef<HTMLDivElement>(null)
 
@@ -31,18 +30,15 @@ export default function Home({ champions, mergedChampions }: HomeProps) {
       <MatchupSection
         champions={mergedChampions}
         selectedId={selected?.id ?? null}
-        onSelect={setSelected}
+        onSelect={(c) => setSelected(c || null)}
       />
-      <main className="w-full max-w-[1100px] mx-auto px-5 pt-40 box-border">
-        {selected && (
+      {selected && (
+        <main className="w-[92%] max-w-[1800px] mx-auto pt-40 box-border">
           <div ref={infoRef}>
-            <ChampionInfo
-              champion={selected}
-              className="max-w-[900px] mx-auto"
-            />
+            <ChampionInfo champion={selected} className="w-full" />
           </div>
-        )}
-      </main>
+        </main>
+      )}
       <AboutMeSection />
     </>
   )

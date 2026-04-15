@@ -4,12 +4,14 @@ export interface BuildItem {
 }
 
 export interface RuneStyle {
+  id: number
   riotid: string
   name: string
   icon: { url: string }
 }
 
 export interface RunePerk {
+  id: number
   riotid: string
   name: string
   icon: { url: string }
@@ -33,6 +35,16 @@ export interface Champion {
   image: { url: string }
   spells: Array<{ url: string }>
   build: Array<{ url: string }>
+  runes?: {
+    primary: {
+      style: RuneStyle & { url: string }
+      perks: Array<RunePerk & { url: string }>
+    }
+    secondary: {
+      style: RuneStyle & { url: string }
+      perks: Array<RunePerk & { url: string }>
+    }
+  }
 }
 
 export interface RawChampion {

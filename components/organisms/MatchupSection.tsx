@@ -70,25 +70,18 @@ export default function MatchupSection({ champions, selectedId, onSelect, classN
         </div>
         <GridScroll>
           <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2">
-            {[...champions]
-              .sort((a, b) => {
-                const aEnabled = !!a.strapiChampion
-                const bEnabled = !!b.strapiChampion
-                if (aEnabled !== bEnabled) return aEnabled ? -1 : 1
-                return a.ddChampion.name.localeCompare(b.ddChampion.name)
-              })
-              .map((m) => (
-                <StaticChampionCard
-                  key={m.ddChampion.id}
-                  name={m.ddChampion.name}
-                  subtitle={m.ddChampion.title}
-                  imageUrl={m.imageUrl}
-                  imageAlt={m.ddChampion.name}
-                  disabled={!m.strapiChampion}
-                  selected={m.strapiChampion?.id === selectedId}
-                  onClick={m.strapiChampion ? () => onSelect(m.strapiChampion!) : undefined}
-                />
-              ))}
+            {champions.map((m) => (
+              <StaticChampionCard
+                key={m.ddChampion.id}
+                name={m.ddChampion.name}
+                subtitle={m.ddChampion.title}
+                imageUrl={m.imageUrl}
+                imageAlt={m.ddChampion.name}
+                disabled={!m.strapiChampion}
+                selected={m.strapiChampion?.id === selectedId}
+                onClick={m.strapiChampion ? () => onSelect(m.strapiChampion!) : undefined}
+              />
+            ))}
           </div>
         </GridScroll>
 

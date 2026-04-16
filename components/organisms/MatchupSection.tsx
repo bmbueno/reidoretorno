@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { MergedChampion } from '@/types/mergedChampion'
-import { Champion } from '@/types/champion'
+import { ChampionListItem } from '@/types/champion'
 import StaticChampionCard from '@/components/molecules/StaticChampionCard'
 
 interface Props {
   champions: MergedChampion[]
   selectedId?: number | null
-  onSelect: (champion: Champion) => void
+  onSelect: (champion: ChampionListItem) => void
   className?: string
 }
 

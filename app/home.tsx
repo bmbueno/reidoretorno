@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Champion } from '@/types/champion'
+import { Champion, ChampionListItem } from '@/types/champion'
 import { MergedChampion } from '@/types/mergedChampion'
 import Nav from '@/components/organisms/Nav'
 import Intro from '@/components/organisms/Intro'
@@ -14,14 +14,25 @@ interface HomeProps {
 }
 
 export default function Home({ mergedChampions }: HomeProps) {
-  const [selected, setSelected] = useState<Champion | null>(null)
+  const [selectedId, setSelectedId] = useState<number | null>(null)
+  const [champion, setChampion] = useState<Champion | null>(null)
+  const [loading, setLoading] = useState(false)
   const infoRef = useRef<HTMLDivElement>(null)
 
+  async function handleSelect(item: ChampionListItem) {
+    setSelectedId(item.id)
+    setLoading(true)
+    const res = await fetch(`/api/champions?id=${item.documentId}`)
+    const data: Champion = await res.json()
+    setChampion(data)
+    setLoading(false)
+  }
+
   useEffect(() => {
-    if (selected) {
+    if (champion) {
       infoRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-  }, [selected])
+  }, [champion])
 
   return (
     <>
@@ -29,13 +40,19 @@ export default function Home({ mergedChampions }: HomeProps) {
       <Intro />
       <MatchupSection
         champions={mergedChampions}
-        selectedId={selected?.id ?? null}
-        onSelect={(c) => setSelected(c || null)}
+        selectedId={selectedId}
+        onSelect={handleSelect}
       />
-      {selected && (
+      {(champion || loading) && (
         <main className="w-[92%] max-w-[1800px] mx-auto pt-40 box-border">
           <div ref={infoRef}>
-            <ChampionInfo champion={selected} className="w-full" />
+            {loading ? (
+              <div className="flex justify-center">
+                <div className="w-10 h-10 border-4 border-[var(--rdr-primary)] border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : champion && (
+              <ChampionInfo champion={champion} className="w-full" />
+            )}
           </div>
         </main>
       )}

@@ -1,7 +1,7 @@
-import { Champion, RawChampion } from '@/types/champion'
+import { Champion, ChampionListItem, RawChampion } from '@/types/champion'
 import { MergedChampion } from '@/types/mergedChampion'
 import { DDragonChampion } from '@/types/dataDragon'
-import { getDDragonImageUrl, getDDragonTileUrl } from './dataDragon'
+import { getDDragonTileUrl } from './dataDragon'
 
 const prefix = (strapiUrl: string, path?: string) =>
   path ? `${strapiUrl}${path}` : ''
@@ -36,16 +36,14 @@ export function mapStrapiChampion(c: RawChampion, strapiUrl: string): Champion {
 
 export function buildMergedChampions(
   ddChampions: DDragonChampion[],
-  strapiChampions: Champion[]
+  strapiChampions: ChampionListItem[]
 ): MergedChampion[] {
   const merged = ddChampions.map((dd) => {
     const strapi = strapiChampions.find((c) => c.riotkey === dd.key)
     return {
       ddChampion: dd,
       imageUrl: getDDragonTileUrl(dd.id),
-      strapiChampion: strapi
-        ? { ...strapi, image: { url: getDDragonImageUrl(dd.version, dd.image.full) } }
-        : undefined,
+      strapiChampion: strapi,
     }
   })
 

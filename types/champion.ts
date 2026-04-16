@@ -48,6 +48,14 @@ export interface Champion {
   }
 }
 
+export interface ChampionListItem {
+  id: number
+  documentId: string
+  name: string
+  riotkey: string
+  slug: string
+}
+
 export interface RawChampion {
   id: number
   documentId: string

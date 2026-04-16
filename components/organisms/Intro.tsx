@@ -14,7 +14,7 @@ const BgImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 55% center;
+  object-position: 90% center;
   opacity: 0.4;
   mix-blend-mode: luminosity;
   z-index: 0;
@@ -82,7 +82,7 @@ const Description = styled.p`
 `
 
 export default function Intro({ className }: { className?: string }) {
-  const bannerLink = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_43.jpg';
+  const bannerLink = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg';
   return (
     <Section id="home" className={`pt-20 ${className ?? ''}`}>
       <BgImg src={bannerLink} alt="Garen Background" />

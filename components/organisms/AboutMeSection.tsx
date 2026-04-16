@@ -78,13 +78,65 @@ const GoldHighlight = styled.span`
   font-style: italic;
 `
 
-const StatsRow = styled.div`
+const BottomRow = styled.div`
   border-top: 1px solid #40484e;
   padding-top: 2rem;
   margin-top: 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+`
+
+const TwitchButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #9146ff;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-headline, 'Space Grotesk', sans-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: 3px solid #9146ff;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #9146ff;
+    color: #fff;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+`
+
+const CoachButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--rdr-primary);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-headline, 'Space Grotesk', sans-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  border: 3px solid var(--rdr-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--rdr-primary);
+    color: #fff;
+  }
 `
 
 export default function AboutMeSection({ className }: { className?: string }) {
@@ -117,10 +169,16 @@ export default function AboutMeSection({ className }: { className?: string }) {
                 Este guia é a compilação de todo o meu conhecimento tático, testado e aprovado em milhares de partidas ranqueadas.
               </BodyText>
             </div>
-            <StatsRow>
-              <StatChip value="68%" label="WINRATE MÉDIO" color="gold" />
+            <BottomRow>
               <StatChip value="TOP 1" label="GAREN SERVER BR" color="primary" />
-            </StatsRow>
+              <TwitchButton href="https://www.twitch.tv/reidoretorno" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                Twitch
+              </TwitchButton>
+              {/* <CoachButton>
+                🗡️ COACH
+              </CoachButton> */}
+            </BottomRow>
           </div>
         </div>
       </div>

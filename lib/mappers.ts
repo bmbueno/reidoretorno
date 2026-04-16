@@ -11,8 +11,8 @@ export function mapStrapiChampion(c: RawChampion, strapiUrl: string): Champion {
 
   return {
     ...c,
-    spells: c.spells.map((s) => ({ url: prefix(strapiUrl, s.image?.url) })),
-    build: c.build.map((b) => ({ url: prefix(strapiUrl, b.image?.url) })),
+    spells: c.spells.map((s) => ({ name: s.name, url: prefix(strapiUrl, s.image?.url) })),
+    build: c.build.map((b) => ({ name: b.name, url: prefix(strapiUrl, b.image?.url) })),
     runes: rb
       ? {
           primary: {

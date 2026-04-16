@@ -1,5 +1,6 @@
 export interface BuildItem {
   riotkey: string
+  name: string
   image: { url: string }
 }
 
@@ -33,8 +34,8 @@ export interface Champion {
   name: string
   riotkey: string
   image: { url: string }
-  spells: Array<{ url: string }>
-  build: Array<{ url: string }>
+  spells: Array<{ name: string; url: string }>
+  build: Array<{ name: string; url: string }>
   runes?: {
     primary: {
       style: RuneStyle & { url: string }
@@ -55,7 +56,7 @@ export interface RawChampion {
   name: string
   riotkey: string
   image: { url: string }
-  spells: Array<{ image: { url: string } }>
+  spells: Array<{ name: string; image: { url: string } }>
   build: Array<BuildItem>
   runebuilds: RuneBuild[]
 }

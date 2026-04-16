@@ -109,7 +109,7 @@ export default function ChampionInfo({ champion, className }: ChampionInfoProps)
             </SectionHeader>
             <CompactBox>
               {champion.spells.map((s, i) => (
-                <ItemImage key={i} src={s.url} alt={`Spell ${i + 1}`} />
+                <ItemImage key={i} src={s.url} alt={s.name} title={s.name} />
               ))}
             </CompactBox>
           </Section>
@@ -121,7 +121,7 @@ export default function ChampionInfo({ champion, className }: ChampionInfoProps)
             </SectionHeader>
             <CompactBox>
               {champion.build.map((b, i) => (
-                <ItemImage key={i} src={b.url} alt={`Item ${i + 1}`} />
+                <ItemImage key={i} src={b.url} alt={b.name} title={b.name} />
               ))}
             </CompactBox>
           </Section>

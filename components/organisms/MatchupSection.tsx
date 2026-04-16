@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import { MergedChampion } from '@/types/mergedChampion'
 import { Champion } from '@/types/champion'
@@ -36,6 +37,27 @@ const Subtitle = styled.p`
   margin: 0;
 `
 
+const SearchInput = styled.input`
+  background: var(--rdr-bg);
+  border: 1px solid #40484e;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body, Inter, sans-serif);
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+  max-width: 220px;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: #8a9299;
+  }
+
+  &:focus {
+    border-color: var(--rdr-primary);
+  }
+`
+
 const GridScroll = styled.div`
   overflow-y: auto;
   max-height: 185px;
@@ -57,20 +79,32 @@ const GridScroll = styled.div`
 `
 
 export default function MatchupSection({ champions, selectedId, onSelect, className }: Props) {
+  const [search, setSearch] = useState('')
+
+  const filtered = search
+    ? champions.filter((m) => m.ddChampion.name.toLowerCase().includes(search.toLowerCase()))
+    : champions
+
   return (
     <Section id="matchups" className={`py-32 ${className ?? ''}`}>
       <div className="container mx-auto px-12">
-        <div className="flex justify-between items-end mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-16">
           <div>
             <SectionTitle>
               GAREN <TitleAccent>MATCHUPS</TitleAccent>
             </SectionTitle>
             <Subtitle>COMO ANULAR SEUS COUNTERS DIRETOS</Subtitle>
           </div>
+          <SearchInput
+            type="text"
+            placeholder="Buscar campeão..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
         <GridScroll>
           <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2">
-            {champions.map((m) => (
+            {filtered.map((m) => (
               <StaticChampionCard
                 key={m.ddChampion.id}
                 name={m.ddChampion.name}

@@ -154,23 +154,28 @@ export default function AboutMeSection({ className }: { className?: string }) {
             <PhotoDecoration />
           </PhotoWrapper>
           <div className="w-full md:w-1/2">
-            <Badge>ESPECIALISTA GAREN</Badge>
-            <Title>SOBRE MIM</Title>
+            <Badge>MONO GAREN</Badge>
+            <Title>REI DO RETORNO</Title>
             <div className="space-y-6">
               <BodyText>
-                Sou jogador de Garen há mais de 8 temporadas, acumulando mais de{' '}
-                <PrimaryHighlight>5.000 horas</PrimaryHighlight> dedicadas exclusivamente a entender os limites do Poder de Demacia.
+                Salve, rapaziada! Meu nome é <GoldHighlight>Henrique</GoldHighlight>, mas muitos me conhecem como {' '}
+                <PrimaryHighlight>"Rei do Retorno"</PrimaryHighlight>. Sou mono Garen há{' '}
+                <GoldHighlight>8 anos</GoldHighlight> — uma jornada que começou no{' '}
+                Bronze e, com muito aprendizado e dedicação, me levou a alcançar o{' '}
+                <PrimaryHighlight>Challenger</PrimaryHighlight> pela primeira vez na Season 8.
+              </BodyText>
+              <br />
+              <BodyText>
+                Desde então, me mantive entre os melhores, consolidando minha trajetória como um{' '}
+                <GoldHighlight>eterno Challenger</GoldHighlight>.
               </BodyText>
               <BodyText>
-                Alcancei o High Elo consistentemente jogando de forma agressiva. Meu foco não é apenas sobreviver na lane, mas sim{' '}
-                <GoldHighlight>dominar e carregar</GoldHighlight> através de itens de AD e crítico.
-              </BodyText>
-              <BodyText>
-                Este guia é a compilação de todo o meu conhecimento tático, testado e aprovado em milhares de partidas ranqueadas.
+                Este guia é a compilação de todo o meu conhecimento tático, testado e aprovado em{' '}
+                <PrimaryHighlight>milhares</PrimaryHighlight> de partidas ranqueadas.
               </BodyText>
             </div>
             <BottomRow>
-              <StatChip value="TOP 1" label="GAREN SERVER BR" color="primary" />
+              <StatChip value="TOP 1" label="GAREN MUNDIAL" color="primary" />
               <TwitchButton href="https://www.twitch.tv/reidoretorno" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
                 Twitch

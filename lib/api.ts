@@ -12,7 +12,7 @@ export async function getChampions() {
       headers: {
         Authorization: `Bearer ${strapiToken}`,
       },
-      next: { revalidate: 3600, tags: ['champions'] },
+      next: { revalidate: 60 },
     }
   )
 

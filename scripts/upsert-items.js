@@ -1,6 +1,26 @@
 const STRAPI_URL = "http://localhost:1337/api/items";
 const TOKEN = ""; //
 
+
+async function uploadImageToStrapi(imageUrl, fileName) {
+  const imageBuffer = await fetch(imageUrl).then(r => r.arrayBuffer());
+  const baseUrl = new URL(STRAPI_URL).origin;
+
+  const formData = new FormData();
+  formData.append("files", new Blob([imageBuffer]), fileName);
+
+  const res = await fetch(`${baseUrl}/api/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${TOKEN}`,
+    },
+    body: formData,
+  });
+
+  const json = await res.json();
+  return json[0]?.id;
+}
+
 async function run() {
   try {
     const versions = await fetch(
@@ -22,12 +42,7 @@ async function run() {
       if (!item.gold?.purchasable) continue;
       if (!item.maps?.["11"]) continue;
 
-      const payload = {
-        name: item.name,
-        riotkey: id,
-        plaintext: item.plaintext,
-        version: version,
-      };
+      const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${id}.png`;
 
       try {
         const existingRes = await fetch(
@@ -42,15 +57,33 @@ async function run() {
         const existingJson = await existingRes.json();
         const existingItem = existingJson.data?.[0];
 
+        let imageId = null;
+
+        // 🔥 só faz upload se for novo ou versão mudou
+        if (!existingItem || existingItem.version !== version) {
+          imageId = await uploadImageToStrapi(
+            imageUrl,
+            `${item.image.full}`
+          );
+        }
+
+        const payload = {
+          name: item.name,
+          riotkey: id,
+          plaintext: item.plaintext,
+          version: version,
+          image: imageId,
+        };
+
         if (existingItem) {
-          const currentVersion = existingItem.attributes.version;
+          const currentVersion = existingItem.version;
 
           if (currentVersion === version) {
             console.log("Sem mudança:", item.name);
             continue;
           }
 
-          await fetch(`${STRAPI_URL}/${existingItem.id}`, {
+          await fetch(`${STRAPI_URL}/${existingItem.documentId}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

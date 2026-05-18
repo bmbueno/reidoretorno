@@ -28,6 +28,27 @@ export async function getChampions() {
   return res.json()
 }
 
+export async function getTopLanerChampions(): Promise<string[]> {
+  const { strapiUrl, strapiToken } = getStrapiConfig()
+
+  const res = await fetch(
+    `${strapiUrl}/api/toplaner`,
+    {
+      headers: { Authorization: `Bearer ${strapiToken}` },
+      cache: 'no-store',
+    }
+  )
+
+  if (!res.ok) {
+    const body = await res.text()
+    throw new Error(`Failed to fetch toplaner: ${res.status} ${res.statusText} — ${body}`)
+  }
+
+  const json = await res.json()
+  const raw: string = json?.data?.champions ?? ''
+  return raw.split(',').map((name: string) => name.trim()).filter(Boolean)
+}
+
 export async function getChampionByDocumentId(documentId: string) {
   const { strapiUrl, strapiToken } = getStrapiConfig()
 

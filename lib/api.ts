@@ -13,7 +13,7 @@ export async function getChampions() {
   const { strapiUrl, strapiToken } = getStrapiConfig()
 
   const res = await fetch(
-    `${strapiUrl}/api/campeoes?fields[0]=name&fields[1]=riotkey&fields[2]=slug`,
+    `${strapiUrl}/api/campeoes?fields[0]=name&fields[1]=riotkey&fields[2]=slug&pagination[pageSize]=200`,
     {
       headers: { Authorization: `Bearer ${strapiToken}` },
       cache: 'no-store',

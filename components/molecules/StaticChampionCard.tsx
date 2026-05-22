@@ -17,6 +17,7 @@ const Card = styled.div<{ $disabled?: boolean; $selected?: boolean }>`
   aspect-ratio: 3 / 4;
   background: var(--rdr-bg);
 
+
   ${({ $disabled }) =>
     $disabled
       ? css`
@@ -59,14 +60,18 @@ const Overlay = styled.div`
 
 const Info = styled.div`
   position: absolute;
-  bottom: 16px;
+  bottom: 6px;
   left: 8px;
 `
 
 const ChampName = styled.h4`
   font-family: var(--font-headline, 'Space Grotesk', sans-serif);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 12px;
+
+  @media (min-width: 1024px) {
+    font-size: 16px;
+  }
   text-transform: uppercase;
   font-style: italic;
   margin: 0 0 2px;

@@ -44,7 +44,7 @@ export default function Home({ mergedChampions }: HomeProps) {
         onSelect={handleSelect}
       />
       {(champion || loading) && (
-        <main className="w-[92%] max-w-[1800px] mx-auto pt-40 box-border">
+        <main className="w-[92%] max-w-[1800px] mx-auto pt-32 box-border">
           <div ref={infoRef}>
             {loading ? (
               <div className="flex justify-center">

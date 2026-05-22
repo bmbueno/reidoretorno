@@ -92,8 +92,8 @@ export default function Intro({ className }: { className?: string }) {
         <Content>
           <Eyebrow>JUSTIÇA DEMACIANA</Eyebrow>
           <Title>
-            MATCHUPS <br />
-            <TitleAccent>— GAREN AD TOP</TitleAccent>
+             GAREN <br />
+            <TitleAccent>MATCHUPS</TitleAccent>
           </Title>
           <Description>
             Se torne um deus jogando de Garen. Aprenda a punir cada erro e dominar a rota com autoridade absoluta.

@@ -83,12 +83,22 @@ const StatsGrid = styled.div`
   grid-template-columns: 1fr auto auto auto;
   gap: 0 3rem;
   align-items: start;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1.5rem;
+  }
 `
 
 const StatCol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  @media (max-width: 640px) {
+    grid-column: 1 / -1;
+    align-items: center;
+  }
 `
 
 const StatLink = styled.a`

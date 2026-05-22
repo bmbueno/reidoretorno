@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import StatChip from '@/components/atoms/StatChip'
 
 const Section = styled.section`
   background: var(--rdr-bg);
@@ -72,71 +71,76 @@ const PrimaryHighlight = styled.span`
   font-weight: 700;
 `
 
-const GoldHighlight = styled.span`
-  color: var(--rdr-gold);
-  font-weight: 700;
-  font-style: italic;
-`
 
 const BottomRow = styled.div`
   border-top: 1px solid #40484e;
   padding-top: 2rem;
   margin-top: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
 `
 
-const TwitchButton = styled.a`
-  display: inline-flex;
+const StatsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 0 3rem;
+  align-items: start;
+`
+
+const StatCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`
+
+const StatLink = styled.a`
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  background: transparent;
-  color: #9146ff;
-  padding: 0.75rem 1.5rem;
-  font-family: var(--font-headline, 'Space Grotesk', sans-serif);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.875rem;
   text-decoration: none;
-  border: 3px solid #9146ff;
-  transition: all 0.2s;
+  transition: opacity 0.2s;
 
   &:hover {
-    background: #9146ff;
-    color: #fff;
+    opacity: 0.7;
   }
+`
+
+const StatValue = styled.div`
+  height: 3rem;
+  display: flex;
+  align-items: flex-end;
+  font-family: var(--font-headline, 'Space Grotesk', sans-serif);
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--rdr-primary);
+`
+
+const StatIconBox = styled.div<{ $color: string }>`
+  height: 3rem;
+  display: flex;
+  align-items: flex-end;
+  color: ${({ $color }) => $color};
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 2rem;
+    height: 2rem;
     fill: currentColor;
   }
 `
 
-const CoachButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: var(--rdr-primary);
-  padding: 0.75rem 1.5rem;
+const CoachIcon = styled.span`
+  font-size: 2rem;
+  line-height: 1;
+`
+
+const StatLabel = styled.span`
   font-family: var(--font-headline, 'Space Grotesk', sans-serif);
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.875rem;
-  border: 3px solid var(--rdr-primary);
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background: var(--rdr-primary);
-    color: #fff;
-  }
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  color: #fff;
 `
 
 export default function AboutMeSection({ className }: { className?: string }) {
@@ -158,16 +162,16 @@ export default function AboutMeSection({ className }: { className?: string }) {
             <Title>REI DO RETORNO</Title>
             <div className="space-y-6">
               <BodyText>
-                Salve, rapaziada! Meu nome é <GoldHighlight>Henrique</GoldHighlight>, mas muitos me conhecem como {' '}
+                Salve, rapaziada! Meu nome é <PrimaryHighlight>Henrique</PrimaryHighlight>, mas muitos me conhecem como {' '}
                 <PrimaryHighlight>"Rei do Retorno"</PrimaryHighlight>. Sou mono Garen há{' '}
-                <GoldHighlight>8 anos</GoldHighlight> — uma jornada que começou no{' '}
+                <PrimaryHighlight>8 anos</PrimaryHighlight> — uma jornada que começou no{' '}
                 Bronze e, com muito aprendizado e dedicação, me levou a alcançar o{' '}
                 <PrimaryHighlight>Challenger</PrimaryHighlight> pela primeira vez na Season 8.
               </BodyText>
               <br />
               <BodyText>
                 Desde então, me mantive entre os melhores, consolidando minha trajetória como um{' '}
-                <GoldHighlight>eterno Challenger</GoldHighlight>.
+                <PrimaryHighlight>eterno Challenger</PrimaryHighlight>.
               </BodyText>
               <BodyText>
                 Este guia é a compilação de todo o meu conhecimento tático, testado e aprovado em{' '}
@@ -175,14 +179,33 @@ export default function AboutMeSection({ className }: { className?: string }) {
               </BodyText>
             </div>
             <BottomRow>
-              <StatChip value="TOP 1" label="GAREN MUNDIAL" color="primary" />
-              <TwitchButton href="https://www.twitch.tv/reidoretorno" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
-                Twitch
-              </TwitchButton>
-              {/* <CoachButton>
-                🗡️ COACH
-              </CoachButton> */}
+              <StatsGrid>
+                <StatCol>
+                  <StatValue>TOP 1</StatValue>
+                  <StatLabel>GAREN MUNDIAL</StatLabel>
+                </StatCol>
+
+                <StatLink href="https://www.youtube.com/@reidoretorno" target="_blank" rel="noopener noreferrer">
+                  <StatIconBox $color="#ff0000">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  </StatIconBox>
+                  <StatLabel>YOUTUBE</StatLabel>
+                </StatLink>
+
+                <StatLink href="https://www.twitch.tv/reidoretorno" target="_blank" rel="noopener noreferrer">
+                  <StatIconBox $color="#9146ff">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                  </StatIconBox>
+                  <StatLabel>TWITCH</StatLabel>
+                </StatLink>
+
+                <StatLink href="https://discord.gg/GfkdPa2ab7" target="_blank" rel="noopener noreferrer">
+                  <StatIconBox $color="var(--rdr-primary)">
+                    <CoachIcon>🗡️</CoachIcon>
+                  </StatIconBox>
+                  <StatLabel>COACH</StatLabel>
+                </StatLink>
+              </StatsGrid>
             </BottomRow>
           </div>
         </div>

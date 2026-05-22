@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Rei do Retorno',
-  description: 'Guias de matchup para League of Legends',
+  description: 'Guias de matchup contra Garen!',
 }
 
 export default function RootLayout({
